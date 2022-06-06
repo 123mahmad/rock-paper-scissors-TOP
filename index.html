@@ -20,41 +20,46 @@
         }
         function round (playerChoice, computerChoice){
             if (playerChoice == `rock` && computerChoice == `rock`){
-                return `tie: rock vs rock`;
+                return `round tie: rock vs rock`;
             } else if (playerChoice == `rock` && computerChoice == `paper`){
-                return `loss: rock vs paper`;
+                return `round loss: rock vs paper`;
             } else if (playerChoice == `rock` && computerChoice == `scissors`){
-                return `win: rock vs scissors`;
+                return `round win: rock vs scissors`;
             } else if (playerChoice == `paper` && computerChoice == `rock`){
-                return `win: paper vs rock`;
+                return `round win: paper vs rock`;
             } else if (playerChoice == `paper` && computerChoice == `paper`){
-                return `tie: paper vs paper`;
+                return `round tie: paper vs paper`;
             } else if (playerChoice == `paper` && computerChoice == `scissors`){
-                return `loss: paper vs scissors`;
+                return `round loss: paper vs scissors`;
             } else if (playerChoice == `scissors` && computerChoice == `rock`){
-                return `loss: scissors vs rock`;
+                return `round loss: scissors vs rock`;
             } else if (playerChoice == `scissors` && computerChoice == `paper`){
-                return `win: scissors vs paper`;
+                return `round win: scissors vs paper`;
             } else if (playerChoice == `scissors` && computerChoice == `scissors`){
-                return `tie: scissors vs scissors`;
+                return `round tie: scissors vs scissors`;
             }
         }
-        function game (playerChoice){
+        function game (){
             playerWins = 0;
             computerWins = 0;
             for (let i = 0; i < 5; i++) {
+                input = prompt();
+                playerChoice = input.toLowerCase();
                 computerChoice = computerPlay();
                 singleRound = round (playerChoice,computerChoice);
+                console.log (singleRound);
                 if (singleRound.includes(`win`)){playerWins++;}
                 else if (singleRound.includes(`loss`)){computerWins++;}
             }
             if (playerWins > computerWins){
-                return `win: ${playerWins} vs ${computerWins}`;
-            } else return `loss: ${playerWins} vs ${computerWins}`;
+                return `game win: ${playerWins} vs ${computerWins}`;
+            } else if (playerWins < computerWins){
+                return `game loss: ${playerWins} vs ${computerWins}`;
+            } else if (playerWins == computerWins){
+                return `game tie: ${playerWins} vs ${computerWins}`;
+            }
         }
-        let computerChoice = computerPlay();
-        let playerChoice = `rock`;
-        let result = game (playerChoice);
+        let result = game ();
         console.log(result);
     </script>
 </body>
