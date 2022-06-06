@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function computerPlay (){
+            choice = Math.floor(Math.random()*3);
+            if (choice == 0){
+                return `rock`;
+            } else if (choice == 1){
+                return `paper`;
+            } else {
+                return `scissors`;
+            }
+        }
+        function round (playerChoice, computerChoice){
+            if (playerChoice == `rock` && computerChoice == `rock`){
+                return `tie: rock vs rock`;
+            } else if (playerChoice == `rock` && computerChoice == `paper`){
+                return `loss: rock vs paper`;
+            } else if (playerChoice == `rock` && computerChoice == `scissors`){
+                return `win: rock vs scissors`;
+            } else if (playerChoice == `paper` && computerChoice == `rock`){
+                return `win: paper vs rock`;
+            } else if (playerChoice == `paper` && computerChoice == `paper`){
+                return `tie: paper vs paper`;
+            } else if (playerChoice == `paper` && computerChoice == `scissors`){
+                return `loss: paper vs scissors`;
+            } else if (playerChoice == `scissors` && computerChoice == `rock`){
+                return `loss: scissors vs rock`;
+            } else if (playerChoice == `scissors` && computerChoice == `paper`){
+                return `win: scissors vs paper`;
+            } else if (playerChoice == `scissors` && computerChoice == `scissors`){
+                return `tie: scissors vs scissors`;
+            }
+        }
+        function game (playerChoice){
+            playerWins = 0;
+            computerWins = 0;
+            for (let i = 0; i < 5; i++) {
+                computerChoice = computerPlay();
+                singleRound = round (playerChoice,computerChoice);
+                if (singleRound.includes(`win`)){playerWins++;}
+                else if (singleRound.includes(`loss`)){computerWins++;}
+            }
+            if (playerWins > computerWins){
+                return `win: ${playerWins} vs ${computerWins}`;
+            } else return `loss: ${playerWins} vs ${computerWins}`;
+        }
+        let computerChoice = computerPlay();
+        let playerChoice = `rock`;
+        let result = game (playerChoice);
+        console.log(result);
+    </script>
+</body>
+</html>
