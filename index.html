@@ -7,6 +7,10 @@
     <title>Document</title>
 </head>
 <body>
+    <button class="rock">ROCK</button>
+    <button class="paper">PAPER</button>
+    <button class="scissors">SCISSORS</button>
+
     <script>
         function computerPlay (){
             choice = Math.floor(Math.random()*3);
@@ -39,28 +43,25 @@
                 return `round tie: scissors vs scissors`;
             }
         }
-        function game (){
-            playerWins = 0;
-            computerWins = 0;
-            for (let i = 0; i < 5; i++) {
-                input = prompt();
-                playerChoice = input.toLowerCase();
-                computerChoice = computerPlay();
-                singleRound = round (playerChoice,computerChoice);
-                console.log (singleRound);
-                if (singleRound.includes(`win`)){playerWins++;}
-                else if (singleRound.includes(`loss`)){computerWins++;}
+
+        const body = document.querySelector(`body`);
+        const resultDiv = document.createElement(`div`);
+        body.append(resultDiv);
+
+        const playerOptions = document.querySelectorAll(`button`);
+        playerOptions.forEach(
+            option => {
+                option.addEventListener(`click`,selectOption);
+                function selectOption(e) {
+                    let playerChoice = e.target.className;
+                    let computerChoice = computerPlay();
+                    let result = round (playerChoice, computerChoice);
+                    resultDiv.textContent += `${result}`;
+                    
+                }       
             }
-            if (playerWins > computerWins){
-                return `game win: ${playerWins} vs ${computerWins}`;
-            } else if (playerWins < computerWins){
-                return `game loss: ${playerWins} vs ${computerWins}`;
-            } else if (playerWins == computerWins){
-                return `game tie: ${playerWins} vs ${computerWins}`;
-            }
-        }
-        let result = game ();
-        console.log(result);
+        )
+
     </script>
 </body>
 </html>
