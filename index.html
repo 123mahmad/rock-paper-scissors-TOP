@@ -56,12 +56,18 @@
                     let playerChoice = e.target.className;
                     let computerChoice = computerPlay();
                     let result = round (playerChoice, computerChoice);
-                    resultDiv.textContent += `${result}`;
-                    
+                    resultDiv.textContent = `${result}`;
+                    if (resultDiv.textContent.includes(`win`)){playerWins++;}
+                    else if (resultDiv.textContent.includes(`loss`)){computerWins++}
+                    if (playerWins == 5){resultDiv.textContent = `YOU WIN`;playerWins=0}
+                    if (computerWins == 5){resultDiv.textContent = `YOU LOSE`;computerWins=0}
+                    console.log(playerWins);
+                    console.log(computerWins);
                 }       
             }
         )
-
+        let playerWins = 0;
+        let computerWins = 0;
     </script>
 </body>
 </html>
